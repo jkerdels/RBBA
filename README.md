@@ -2,9 +2,9 @@
 resuscitator-based breathing assistance
 
 
-![device_photo](/rbba-dev.jpg device prototype)
+![device_photo](https://github.com/jkerdels/RBBA/blob/master/rbba-dev.jpg?raw=true device prototype)
 
 
 ## Geometry
 
-![parametric_geometry](/rbba-openscad.jpg device geometry)
+![parametric_geometry](https://github.com/jkerdels/RBBA/blob/master/rbba-openscad.jpg?raw=true device geometry)
