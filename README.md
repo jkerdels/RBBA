@@ -9,6 +9,7 @@ There exists a hardware prototype including a control-box that houses all the el
 
 ![device_photo](https://github.com/jkerdels/RBBA/blob/master/rbba-dev.jpg?raw=true "device prototype")
 ![controlbox_photo](https://github.com/jkerdels/RBBA/blob/master/rbba-devbox.jpg?raw=true "control box prototype")
+![sensor_photo](https://github.com/jkerdels/RBBA/blob/master/rbba-devsensor.jpg?raw=true "pressure sensor prototype")
 
 
 ## Geometry
