@@ -8,3 +8,9 @@ resuscitator-based breathing assistance
 ## Geometry
 
 ![parametric_geometry](https://github.com/jkerdels/RBBA/blob/master/rbba-openscad.jpg?raw=true "device geometry")
+
+## Electronics
+
+
+
+## Code
