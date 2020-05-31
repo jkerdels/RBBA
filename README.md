@@ -8,6 +8,7 @@ This project explores the idea of building a breathing assistance system based o
 There exists a hardware prototype including a control-box that houses all the electronics. Furthermore, all basic software components are implemented and ready to be used for the user-end part of the code (which is still incomplete).
 
 ![device_photo](https://github.com/jkerdels/RBBA/blob/master/rbba-dev.jpg?raw=true "device prototype")
+![controlbox_photo](https://github.com/jkerdels/RBBA/blob/master/rbba-devbox.jpg?raw=true "control box prototype")
 
 
 ## Geometry
