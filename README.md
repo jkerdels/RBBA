@@ -1,7 +1,7 @@
 # RBBA
 resuscitator-based breathing assistance
 
-This project explores the idea of building a breathing assistance system based on a resuscitator, that is safe enough for actual usage. This includes the use of sensors to limit the pressure supplied to a recipient and a calibration procedure that allows the system to estimate the volume of air given. In addition, the device should be printable on affordable, low-end 3D printers and use only hardware parts that are widely available. Likewise, the electronics involved should be as minimal as possible, easy to program, and adaptable to one's needs.
+This project explores the idea of building a breathing assistance system based on a resuscitator, which is safe enough for actual usage. This includes the use of sensors to limit the pressure supplied to a recipient and a calibration procedure that allows the system to estimate the volume of air given. In addition, the device should be printable on affordable, low-end 3D printers and use only hardware parts that are widely available. Likewise, the electronics involved should be as minimal as possible, easy to program, and adaptable to one's needs.
 
 ## Current Status
 
