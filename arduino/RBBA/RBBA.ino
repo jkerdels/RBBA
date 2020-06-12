@@ -1,5 +1,42 @@
 /* Overview:
 
+This is the main file for the arduino part of the RBBA project.
+
+To build your own RBBA it is not strictly necessary to have all the
+exact same electronic parts as they are used here, i.e., this arduino
+project serves more as an example of how one might control the device.
+
+For all components that are used in this example code I did not use
+any libraries but implemented everything from scratch. This had multiple
+purposes: 1) If you use code in a medical device you should be familiar
+with the code and the devices you use as much as possible. Using libraries
+and electronic components "black box style" is (in my opinion) not a
+good choice in that case. 2) You minimize dependencies on 3rd-party code
+a lot, which makes the code much more self-contained and easier to use
+for others. 3) There is an educational aspect in both writing the 
+libraries myself and "seeing" that the apparent complexity of an 
+electronic project with many components, different protocols, etc. is
+actually manageable and not as hard as one might think.
+
+This style starts with a configuration section where you can map the
+pins used on your arduino board to the different components like the
+motor controller or the encoder of the motor. Most pins used are general
+purpose digital IO-pins. If the pin has to have some special abilities
+it is noted via a comment.
+
+Following the configuration section is an implementation section where
+the different components of the program are instantiated as global
+variables. Part of this section is the instantiation/definition of 
+the user menu and multiple state machines that define the behavior
+of the system. Both constructs make use of rather modern C++, e.g.,
+using lambda functions to construct menu pages or define the code
+that is run in a given state. This might seem a bit over-engineered
+and a number of people will prefer the more simpler or "proven" approach
+of switch-based state machines.
+
+Finally, the arduino-typical setup and loop functions do little more
+than putting all the previously defined puzzle-pieces together.
+
 */
 
 #include <stdint.h>
@@ -40,8 +77,10 @@ const uint8_t knob_push_pin      = A5;
 
 // implementation
 
+// encoder of the motor
 Encoder encoder(motor_encoder_pin_A, motor_encoder_pin_B);
 
+// L298N-based motor control
 MotorControl mc(
   motor_enable_pin,
   motor_direction_pin_A,
@@ -52,19 +91,25 @@ MotorControl mc(
   encoder
 );
 
+// pressure sensor 1 input
 SoftBMP280 p1(p1_slave_address,p1_scl_pin,p1_sda_pin,p1_speed_khz);
 
+// LCD display output
 SoftHD44780 lcd(lcd_slave_address,lcd_scl_pin,lcd_sda_pin,lcd_speed_khz);
 
+// encoder of the control knob that is used as user interface of the device
 Encoder knob_encoder(knob_encoder_pin_A, knob_encoder_pin_B);
 
-// global state
+// global state textbuffer (used in the UI)
 TextBufferImpl<20> tbuf;
 
+// default patient height
 uint8_t patient_height_cm = 175;
 
+// array that contains the volume calibration data of the resuscitator used
 uint16_t bag_vol_calib_data[9];
 
+// some state variables that control program flow
 bool run_motor_encoder_calibration = false;
 int16_t mc_calibrate_enc = 0;
 
@@ -75,7 +120,7 @@ uint16_t bag_vol_value = 0;
 bool bag_vol_calib_next = false;
 
 
-// config storage
+// EEPROM config storage and loading
 void store_calibration() {
   mc_calibrate_enc = mc.get_max_encoder();
   EEPROM.put(0,mc_calibrate_enc);
